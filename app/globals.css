@@ -143,6 +143,38 @@ body {
   animation: loader-fade-out 0.5s ease-out forwards;
 }
 
+/* Onboarding notification — desktop: slide from right, mobile: slide from top */
+@keyframes notif-enter {
+  from { opacity: 0; transform: translateX(100%) scale(0.95); }
+  to { opacity: 1; transform: translateX(0) scale(1); }
+}
+@keyframes notif-exit {
+  from { opacity: 1; transform: translateX(0) scale(1); }
+  to { opacity: 0; transform: translateX(100%) scale(0.95); }
+}
+@keyframes notif-enter-mobile {
+  from { opacity: 0; margin-top: -80px; }
+  to { opacity: 1; margin-top: 0; }
+}
+@keyframes notif-exit-mobile {
+  from { opacity: 1; margin-top: 0; }
+  to { opacity: 0; margin-top: -80px; }
+}
+.animate-notif-enter {
+  animation: notif-enter-mobile 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+.animate-notif-exit {
+  animation: notif-exit-mobile 0.3s ease-in forwards;
+}
+@media (min-width: 768px) {
+  .animate-notif-enter {
+    animation: notif-enter 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+  .animate-notif-exit {
+    animation: notif-exit 0.35s ease-in forwards;
+  }
+}
+
 /* Brand dot color cycle */
 @keyframes dot-cycle {
   0%, 100% { background-color: #7c5cfc; box-shadow: 0 0 8px rgba(124,92,252,0.6); }

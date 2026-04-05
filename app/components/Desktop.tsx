@@ -132,6 +132,22 @@ export default function Desktop() {
     return () => window.removeEventListener("mousemove", handleMouseMove);
   }, []);
 
+  const [showNotif, setShowNotif] = useState(false);
+  const [notifExit, setNotifExit] = useState(false);
+
+  useEffect(() => {
+    if (loading) return;
+    const show = setTimeout(() => setShowNotif(true), 400);
+    const hide = setTimeout(() => setNotifExit(true), 5400);
+    const remove = setTimeout(() => setShowNotif(false), 5800);
+    return () => { clearTimeout(show); clearTimeout(hide); clearTimeout(remove); };
+  }, [loading]);
+
+  const dismissNotif = useCallback(() => {
+    setNotifExit(true);
+    setTimeout(() => setShowNotif(false), 400);
+  }, []);
+
   const [lang, setLang] = useState<Lang>("fr");
   const [langKey, setLangKey] = useState(0);
   const [mobileApp, setMobileApp] = useState<string | null>(null);
@@ -250,6 +266,34 @@ export default function Desktop() {
               />
             </div>
           </div>
+        )}
+
+        {/* Onboarding notification */}
+        {showNotif && (
+          <button
+            type="button"
+            onClick={() => {
+              dismissNotif();
+              openApp("browser");
+              setMobileApp("browser");
+            }}
+            className={`fixed z-[9999] flex items-center gap-3 px-4 py-3 border border-white/[0.08] backdrop-blur-xl cursor-pointer transition-colors hover:border-[#f0508c]/30 top-14 left-3 right-5 rounded-2xl md:top-12 md:left-auto md:right-4 md:w-auto md:rounded-xl ${notifExit ? "animate-notif-exit" : "animate-notif-enter"}`}
+            style={{ background: "rgba(20,16,40,0.85)", boxShadow: "0 8px 32px rgba(0,0,0,0.4), 0 0 0 1px rgba(124,92,252,0.08)" }}
+          >
+            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[#3ecfcf] to-[#5cefef] flex items-center justify-center flex-shrink-0">
+              <svg className="w-4 h-4 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <circle cx="12" cy="12" r="10" />
+                <path d="M2 12h20" />
+                <path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z" />
+              </svg>
+            </div>
+            <div className="text-left">
+              <p className="text-[11px] font-medium text-white/50 tracking-wide uppercase">Lou.os</p>
+              <p className="text-[13px] text-white/90">
+                {lang === "en" ? "Discover my projects in Web Apps" : "Découvrez mes projets dans Web Apps"}
+              </p>
+            </div>
+          </button>
         )}
 
         {/* Lang switch fade overlay */}

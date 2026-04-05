@@ -48,38 +48,38 @@ const FEATURED: FeaturedProject[] = [
     name: "ft_transcendence",
     repoOwner: "Gregory-Marquiset/llmcg_transcendence",
     description: {
-      fr: "Projet de fin de tronc commun 42 — App fullstack en microservices (Fastify + React). Jeu multijoueur, authentification, chat temps réel.",
-      en: "42 common core final project — Fullstack microservices app (Fastify + React). Multiplayer game, authentication, real-time chat.",
+      fr: "App fullstack temps réel en microservices — Fastify, React, WebSocket. Multijoueur, auth OAuth + 2FA, chat live.",
+      en: "Real-time fullstack app built with microservices — Fastify, React, WebSocket. Multiplayer game, OAuth + 2FA auth, live chat.",
     },
     languages: ["TypeScript", "JavaScript", "Shell"],
     accent: "from-[#7c5cfc] to-[#5c3cdc]",
   },
   {
-    name: "webserv_42",
+    name: "webserv",
     repoOwner: "loubrtt/webserv_42",
     description: {
-      fr: "Serveur HTTP écrit from scratch en C++ avec epoll. Gestion des CGI, configuration type nginx, méthodes GET/POST/DELETE.",
-      en: "HTTP server written from scratch in C++ with epoll. CGI handling, nginx-like configuration, GET/POST/DELETE methods.",
+      fr: "Serveur HTTP custom en C++ (type nginx) — multiplexage I/O avec epoll, support CGI, parsing de config, méthodes GET/POST/DELETE.",
+      en: "Custom HTTP server in C++ (nginx-like) — I/O multiplexing with epoll, CGI support, config parsing, GET/POST/DELETE methods.",
     },
     languages: ["C++", "Makefile"],
     accent: "from-[#f0508c] to-[#d03070]",
   },
   {
-    name: "Inception_42",
+    name: "Inception",
     repoOwner: "loubrtt/Inception_42",
     description: {
-      fr: "Infrastructure Docker multi-services — nginx, WordPress, MariaDB avec Docker Compose. Réseau custom, volumes persistants, TLS.",
-      en: "Multi-service Docker infrastructure — nginx, WordPress, MariaDB with Docker Compose. Custom network, persistent volumes, TLS.",
+      fr: "Infrastructure containerisée multi-services avec Docker Compose — nginx, WordPress, MariaDB. Réseau isolé, volumes persistants, TLS.",
+      en: "Multi-service containerized infrastructure with Docker Compose — nginx, WordPress, MariaDB. Isolated network, persistent volumes, TLS.",
     },
     languages: ["Shell", "Makefile"],
     accent: "from-[#3ecfcf] to-[#20a0a0]",
   },
   {
-    name: "philosopher_42",
+    name: "Philosophers",
     repoOwner: "loubrtt/philosopher_42",
     description: {
-      fr: "Problème des philosophes en C — multithreading avec mutex, gestion de race conditions et deadlocks.",
-      en: "Dining philosophers problem in C — multithreading with mutexes, race condition and deadlock management.",
+      fr: "Simulation concurrente en C — gestion de threads, synchronisation par mutex, détection de deadlocks et race conditions.",
+      en: "Concurrent simulation in C — thread management, mutex synchronization, deadlock and race condition handling.",
     },
     languages: ["C", "Makefile"],
     accent: "from-[#fcb45c] to-[#f09030]",
@@ -271,9 +271,6 @@ export default function Projects() {
                     <h3 className="font-semibold text-sm text-white/90 group-hover:text-white transition-colors">
                       {project.name}
                     </h3>
-                    <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-[#7c5cfc]/10 text-[#7c5cfc]">
-                      42
-                    </span>
                     {project.languages.map((l) => (
                       <div key={l} className="flex items-center gap-1">
                         <div
