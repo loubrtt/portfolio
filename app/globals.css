@@ -1,0 +1,212 @@
+@import "tailwindcss";
+
+:root {
+  --background: #050510;
+  --foreground: #e4e4f0;
+  --accent: #7c5cfc;
+  --accent2: #f0508c;
+  --accent3: #3ecfcf;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(124, 92, 252, 0.3);
+  border-radius: 4px;
+}
+
+/* Animated gradient background */
+@keyframes bg-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.animated-bg {
+  background: linear-gradient(
+    135deg,
+    #050510 0%,
+    #0a0a2e 20%,
+    #120824 40%,
+    #0a1628 60%,
+    #050510 100%
+  );
+  background-size: 400% 400%;
+  animation: bg-shift 20s ease infinite;
+}
+
+/* Grid pattern overlay */
+.grid-overlay {
+  background-image:
+    linear-gradient(rgba(124, 92, 252, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(124, 92, 252, 0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+/* Glow effects */
+.glow-purple { box-shadow: 0 0 30px rgba(124, 92, 252, 0.15), 0 0 60px rgba(124, 92, 252, 0.05); }
+.glow-pink { box-shadow: 0 0 30px rgba(240, 80, 140, 0.15), 0 0 60px rgba(240, 80, 140, 0.05); }
+.glow-cyan { box-shadow: 0 0 30px rgba(62, 207, 207, 0.15), 0 0 60px rgba(62, 207, 207, 0.05); }
+
+/* Window animations */
+@keyframes window-in {
+  from {
+    opacity: 0;
+    transform: scale(0.9) translateY(20px);
+    filter: blur(4px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+    filter: blur(0);
+  }
+}
+
+.animate-window-in {
+  animation: window-in 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Floating orb */
+@keyframes float {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(30px, -20px) scale(1.05); }
+  66% { transform: translate(-20px, 15px) scale(0.95); }
+}
+
+.animate-float {
+  animation: float 8s ease-in-out infinite;
+}
+
+.animate-float-delayed {
+  animation: float 10s ease-in-out 2s infinite;
+}
+
+.animate-float-slow {
+  animation: float 14s ease-in-out 4s infinite;
+}
+
+/* Blinking cursor */
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+.animate-blink {
+  animation: blink 1s step-end infinite;
+}
+
+/* Hover glow on cards */
+@keyframes border-glow {
+  0%, 100% { border-color: rgba(124, 92, 252, 0.2); }
+  50% { border-color: rgba(124, 92, 252, 0.5); }
+}
+
+/* Loading screen */
+@keyframes loader-dot-cycle {
+  0%, 100% { background-color: #7c5cfc; }
+  33% { background-color: #f0508c; }
+  66% { background-color: #3ecfcf; }
+}
+
+@keyframes loader-pulse {
+  0%, 100% { opacity: 0.3; transform: scale(0.8); }
+  50% { opacity: 1; transform: scale(1); }
+}
+
+@keyframes loader-bar {
+  0% { width: 0%; }
+  100% { width: 100%; }
+}
+
+@keyframes loader-fade-out {
+  0% { opacity: 1; }
+  100% { opacity: 0; visibility: hidden; }
+}
+
+.animate-loader-fade-out {
+  animation: loader-fade-out 0.5s ease-out forwards;
+}
+
+/* Brand dot color cycle */
+@keyframes dot-cycle {
+  0%, 100% { background-color: #7c5cfc; box-shadow: 0 0 8px rgba(124,92,252,0.6); }
+  33% { background-color: #f0508c; box-shadow: 0 0 8px rgba(240,80,140,0.6); }
+  66% { background-color: #3ecfcf; box-shadow: 0 0 8px rgba(62,207,207,0.6); }
+}
+
+.animate-dot-cycle {
+  animation: dot-cycle 6s ease-in-out infinite;
+}
+
+/* Mobile app slide-up */
+@keyframes mobile-app-in {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-mobile-app-in {
+  animation: mobile-app-in 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Hide orbs on mobile */
+@media (max-width: 767px) {
+  .animate-float,
+  .animate-float-delayed,
+  .animate-float-slow {
+    display: none;
+  }
+}
+
+/* Smooth lang switch overlay */
+@keyframes lang-overlay {
+  0% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+.lang-fade {
+  animation: lang-overlay 0.35s ease-out forwards;
+}
+
+/* Device hint fade in */
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.5s ease-out 1.5s both;
+}
+
+/* Prevent selection during drag */
+.dragging * {
+  user-select: none !important;
+  pointer-events: none !important;
+}
